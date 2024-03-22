@@ -101,7 +101,7 @@ body{
 }
 
 .languages{
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     border-bottom: 1px solid black;
 }
 .languages .languages_list .file{
