@@ -97,30 +97,34 @@
         <script>
             var printButton = document.getElementById('printButton');
             var divACacher=document.getElementById('button_div');
+            //Ici la fonction va permettre que lorsque l'on clique sur le bouton Imprimer, les boutons disparaitront et
+            //ainsi la fenêtre d'impression se lancera sans afficher les boutons sur le preview.
             printButton.addEventListener('click', function() {
                 divACacher.style.display="none";
                 window.print();
                 divACacher.style.display="flex";
             });
 
+            // va permettre que lorsque l'on survole mon nom "Fabio Mirasola", les lettres vont s'espacer
             $(document).mousemove(function(e){
                 $('h1').css({'letter-spacing': '' + (e.pageY)/95+ 'px'})
             });
 
+            // la fonction va ici jouer sur les barre de compétences. Elle va créer une animation de remplissage progressive 
+            // jusqu'à ce que chaque barre atteingne la valeur que j'ai indiqué dans les attributs des balises plus haut
             function animateProgressBar(progression, targetValue) {
                 let currentValue = 0;
-                const speed = 5;
-
                 const frame = () => {
-                if (currentValue < targetValue) {
-                    currentValue++;
-                    progression.value = currentValue;
-                    requestAnimationFrame(frame);
-                }
+                    if (currentValue < targetValue) {
+                        currentValue++;
+                        progression.value = currentValue;
+                        requestAnimationFrame(frame);
+                    };
                 };
                 requestAnimationFrame(frame);
             }
 
+            //ici ça va attendre que tout le DOM soit charger pour lancer la fonction et lancer l'animation pour que les barres se remplissent
             document.addEventListener('DOMContentLoaded', () => {
                 const progressBars = document.querySelectorAll('.progression');
 
@@ -130,6 +134,8 @@
                 });
             });
 
+            // cette fonction va permettre qu'une fois chargées ou sur le point d'être complètement chargées, 
+            //les barres soient rechargées du début à suite à leur survol avec le curseur de la souris
             function reanimateProgressBarOnHover() {
                 document.querySelectorAll('.progression').forEach(bar => {
                     bar.addEventListener('mouseenter', () => {
@@ -137,7 +143,9 @@
                     });
                 });
             }
+            reanimateProgressBarOnHover(); // on appelle la fonction pour la recharge des barres
 
+            // cette fonction permettra d'agrandir ma photo de profil lorsque l'on clique dessus mais aussi de sortir de cette agrandissement si on clique ailleurs 
             $(document).ready(function() {
                 $("#image_profil").click(function() {
                     var zoomedContainer = $('<div class="zoomed-container"></div>');
@@ -152,7 +160,8 @@
                 });
             });
 
-            reanimateProgressBarOnHover();
+            // cette fonction permettra de passer au mode sombre lorsque l'on appuira sur le bouton "Mode Sombre" et aussi elle va changer le texte du bouton 
+            // en "Mode Clair" quand on sera passés au mode sombre
             $(document).ready(function() {
                 $('#darkModeToggle').click(function() {
                     $('html').toggleClass('dark-mode');
