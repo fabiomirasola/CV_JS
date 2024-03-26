@@ -255,8 +255,8 @@ button,
 
     .languages_list li {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        justify-content: end;
         margin-bottom: 10px;
     }
 
@@ -276,6 +276,8 @@ button,
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-wrap: wrap;
+
     }
 
     .informations li img{
@@ -284,5 +286,15 @@ button,
 
     .name{
         margin-bottom: "px";
+    }
+    
+    .education_list{
+        padding-left: 20px;
+    }
+    .education_list li p{
+        font-size: 0.8em;
+    }
+    h3{
+        font-size: 1em;
     }
 }
